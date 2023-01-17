@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">sbk.tswtechnologies.sg</domain>
+        <domain includeSubdomains="true">enterprise.tswtechnologies.sg</domain>
+        <domain includeSubdomains="true">192.168.5.157</domain>
+        <domain includeSubdomains="true">47.241.67.245:8069</domain>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>
