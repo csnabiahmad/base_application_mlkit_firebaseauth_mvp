@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".view.activity.CreateAccountActivity"
+            android:name=".view.activity.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.SplashActivity"
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.LoginActivity"
+            android:name=".view.activity.SignInActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity

@@ -1,6 +1,6 @@
-package co.tsw.mlkit.app.presenter
+package co.tsw.mlkit.app.network
 
-interface MainInteractor {
+interface ApiInteractor {
 
     fun onStartApi()
 

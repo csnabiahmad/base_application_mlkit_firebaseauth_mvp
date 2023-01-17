@@ -9,11 +9,11 @@ package co.tsw.checklist.network
 interface ApiServices {
 
 
-    @GET(Constants.GET_WAREHOUSES)
+    @GET(Constants.BASE_URL)
     fun _GET_REQUEST(): Observable<Response<JsonObject>>
 
     @Headers("Content-Type:application/json")
-    @POST(Constants.GET_DRIVERS)
+    @POST(Constants.BASE_URL)
     fun _POST_REQUEST(@Body jsonObject: JsonObject): Observable<Response<JsonObject>>
 
 }

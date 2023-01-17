@@ -2,29 +2,24 @@ package co.tsw.mlkit.app.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import co.tsw.mlkit.app.R
 import co.tsw.mlkit.app.common.Constants
 import co.tsw.mlkit.app.common.ProgressDlg
-import co.tsw.mlkit.app.presenter.MainInteractor
-import co.tsw.mlkit.app.presenter.MainPresenter
+import co.tsw.mlkit.app.presenter.SignInPresenter
 import co.tsw.mlkit.app.utils.SharedPreference
 import co.tsw.mlkit.app.utils.toast
-import co.tsw.mlkit.app.viewmodel.MainViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.activity_login.mButtonLogin
 import kotlinx.android.synthetic.main.activity_login.mEditTextPassword
 import kotlinx.android.synthetic.main.activity_login.mEditTextUsername
 import kotlinx.android.synthetic.main.activity_login.textViewCreateAccount
 
-class LoginActivity : AppCompatActivity(), MainInteractor {
+class SignInActivity : BaseActivity() {
 
-    private var mProgressDlg: ProgressDlg? = null
-    private var mLocalData: SharedPreference? = null
-    private var mMainPresenter: MainPresenter? = null
-    private var mMainViewModel: MainViewModel? = null
+    private var mSignInPresenter: SignInPresenter? = null
     override fun onStart() {
         super.onStart()
-        mMainViewModel?.currentUser?.let {
+        mSignInPresenter?.currentUser?.let {
             startActivity(Intent(this, MainActivity::class.java))
             toast("Welcome back!")
         }
@@ -35,24 +30,22 @@ class LoginActivity : AppCompatActivity(), MainInteractor {
         setContentView(R.layout.activity_login)
 
         //init data
-        mProgressDlg = ProgressDlg(this)
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
         mLocalData = SharedPreference.getInstance(applicationContext)
-        mMainPresenter = MainPresenter(this)
-        mMainViewModel = MainViewModel()
-
-
+        mProgressDlg = ProgressDlg(this)
+        mSignInPresenter = SignInPresenter(this)
         init()
 
     }
 
     fun init() {
         textViewCreateAccount.setOnClickListener {
-            startActivity(Intent(this, CreateAccountActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
 
         mButtonLogin.setOnClickListener {
-            mMainViewModel?.signInUser(mMainPresenter!!,mEditTextUsername,mEditTextPassword)
+            mSignInPresenter?.signInUser(mEditTextUsername,mEditTextPassword)
         }
     }
 
@@ -61,7 +54,7 @@ class LoginActivity : AppCompatActivity(), MainInteractor {
     }
 
     override fun onNextApi(api: String, jsonObject: Any?) {
-        if (api == Constants.AUTHENTICATE){
+        if (api == Constants.TAG_SIGNIN){
             startActivity(Intent(this, MainActivity::class.java))
             toast("signed in successfully")
             finish()
@@ -69,7 +62,7 @@ class LoginActivity : AppCompatActivity(), MainInteractor {
     }
 
     override fun onErrorApi(api: String, e: Any) {
-        if (api == Constants.AUTHENTICATE){
+        if (api == Constants.TAG_SIGNIN){
             toast(e.toString())
         }
     }
