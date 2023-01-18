@@ -1,13 +1,11 @@
 package co.tsw.mlkit.app.presenter
 
 import android.annotation.SuppressLint
-import android.view.View
 import android.widget.EditText
 import co.tsw.mlkit.app.common.Constants
 import co.tsw.mlkit.app.network.ApiInteractor
 import co.tsw.mlkit.app.utils.FirebaseUtils
 import co.tsw.mlkit.app.utils.FirebaseUtils.firebaseAuth
-import co.tsw.mlkit.app.view.fragment.*
 import com.google.firebase.auth.FirebaseUser
 
 

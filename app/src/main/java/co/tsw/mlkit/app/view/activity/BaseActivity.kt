@@ -47,4 +47,5 @@ open class BaseActivity : AppCompatActivity(), ApiInteractor, AbstractAdapter.Li
     override fun onErrorApi(api: String, e: Any) {}
 
     override fun onFinishApi() {}
+
 }

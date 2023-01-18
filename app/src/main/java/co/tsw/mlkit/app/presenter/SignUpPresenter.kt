@@ -1,19 +1,10 @@
 package co.tsw.mlkit.app.presenter
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.view.View
 import android.widget.EditText
 import co.tsw.mlkit.app.common.Constants
 import co.tsw.mlkit.app.network.ApiInteractor
 import co.tsw.mlkit.app.utils.FirebaseUtils
-import co.tsw.mlkit.app.utils.toast
-import co.tsw.mlkit.app.view.activity.MainActivity
-import co.tsw.mlkit.app.view.fragment.*
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_create_account.mEditTextCPassword
-import kotlinx.android.synthetic.main.activity_create_account.mEditTextPassword
-import kotlinx.android.synthetic.main.activity_create_account.mEditTextUsername
 
 
 open class SignUpPresenter (private val mInteractor: ApiInteractor?) {
